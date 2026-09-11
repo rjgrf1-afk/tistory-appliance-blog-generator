@@ -406,7 +406,10 @@ st.markdown("## ✍️ 티스토리 가전리뷰 생성기")
 st.caption("AI 구매가이드 자동 생성 · 쿠팡파트너스 최적화")
 
 with st.expander("🔑 Gemini API 키 설정", expanded='api_key' not in st.session_state):
+    if st.session_state.get('api_key'):
+        st.caption("✅ 저장된 키를 사용 중이에요. 바꾸려면 아래에 새로 입력하세요.")
     api_input = st.text_input("API 키", type="password",
+                               value=st.session_state.get('api_key', ''),
                                placeholder="AIza... (aistudio.google.com 무료 발급)",
                                key="api_input_field")
     if st.button("저장", key="save_api"):
@@ -417,7 +420,10 @@ with st.expander("🔑 Gemini API 키 설정", expanded='api_key' not in st.sess
             st.warning("API 키를 입력해주세요.")
 
 with st.expander("🖼 Pexels API 키 설정 (섹션 사진용, 선택)", expanded='pexels_key' not in st.session_state):
+    if st.session_state.get('pexels_key'):
+        st.caption("✅ 저장된 키를 사용 중이에요. 바꾸려면 아래에 새로 입력하세요.")
     pexels_input = st.text_input("Pexels API 키", type="password",
+                                  value=st.session_state.get('pexels_key', ''),
                                   placeholder="pexels.com/api 무료 발급 (없으면 자동 배너로 대체)",
                                   key="pexels_input_field")
     if st.button("저장", key="save_pexels"):
